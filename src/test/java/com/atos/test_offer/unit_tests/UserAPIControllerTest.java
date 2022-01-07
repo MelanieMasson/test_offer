@@ -42,7 +42,7 @@ class UserAPIControllerTest {
         UserEntity user = new UserEntity();
 
         user.setUsername("username");
-        user.setCountry("France");
+        user.setCountry("FRANCE");
         DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
         user.setBirthday(new Date(dateFormat.parse("01-01-1901").getTime()));
 

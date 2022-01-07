@@ -11,8 +11,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.io.InvalidObjectException;
 
-//@RestController
-@Controller
+@RestController
+//@Controller
 @RequestMapping("/api/user")
 public class UserAPIController {
 
@@ -34,9 +34,8 @@ public class UserAPIController {
             UserEntity user = userService.getUserById(id);
             return ResponseEntity.ok(user);
         } catch (Exception e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND , "User not found" );
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND , " User n°” + id + “ not found. "  );
         }
-
     }
 
     //http://localhost:8080/api/user

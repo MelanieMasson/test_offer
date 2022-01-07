@@ -28,7 +28,7 @@ public class UserRepositoryTest {
         UserEntity user = new UserEntity();
 
         user.setUsername("username");
-        user.setCountry("France");
+        user.setCountry("FRANCE");
         DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
         user.setBirthday(new Date(df.parse("01-01-1901").getTime()));
 
