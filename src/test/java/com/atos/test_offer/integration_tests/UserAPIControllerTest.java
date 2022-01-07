@@ -48,12 +48,12 @@ public class UserAPIControllerTest {
 
     @Test
     public void getAllUser() throws Exception {
-        int numberUsers = 3;
+        int nbUsers = 3;
 
-        for (int i = 0; i < numberUsers; i++)
+        for (int i = 0; i < nbUsers; i++)
             userRepository.save(addNewUser(" Test getAllUser method, user n°" + i + " "));
 
-        mockMvc.perform(get("/api/user")).andExpect(status().isOk()).andExpect(jsonPath("$.length()", Matchers.greaterThanOrEqualTo(numberUsers)));
+        mockMvc.perform(get("/api/user")).andExpect(status().isOk()).andExpect(jsonPath("$.length()", Matchers.greaterThanOrEqualTo(nbUsers)));
     }
 
     @Test

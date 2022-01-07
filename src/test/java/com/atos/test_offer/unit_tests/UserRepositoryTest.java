@@ -37,15 +37,15 @@ public class UserRepositoryTest {
 
     @Test
     public void getAllUser() throws ParseException {
-        int numberUser = 3;
+        int nbUsers = 3;
         //int i = 0;
         UserEntity user;
 
-        for (int i = 0; i < numberUser; i++) {
+        for (int i = 0; i < nbUsers; i++) {
             user = addNewUser(" Test getAllUser method, user n°" + i + " ");
             userRepository.save(user);
         }
-        assertTrue(IterableUtil.sizeOf(userRepository.findAll()) >= numberUser);
+        assertTrue(IterableUtil.sizeOf(userRepository.findAll()) >= nbUsers);
     }
 
     @Test

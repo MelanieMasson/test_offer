@@ -28,7 +28,7 @@ class UserEntityTest {
 
     @Test
     void setId() {
-        int testId = 3;
+        int testId = 1;
         this.user.setId(testId);
         assertEquals(this.user.getId(), testId);
     }

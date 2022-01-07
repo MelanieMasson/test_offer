@@ -38,13 +38,13 @@ public class UserServiceTest {
     @Test
     public void getAllUser() throws ParseException, InvalidObjectException {
         UserEntity user;
-        int numberUser = 3;
+        int nbUsers = 3;
 
-        for (int i = 0; i < numberUser; i++) {
+        for (int i = 0; i < nbUsers; i++) {
             user = addNewUser("Test getAllUser method, user n°" + i);
             userService.addUser(user);
         }
-        assertTrue(IterableUtil.sizeOf(userService.getAllUser()) >= numberUser);
+        assertTrue(IterableUtil.sizeOf(userService.getAllUser()) >= nbUsers);
     }
 
     @Test

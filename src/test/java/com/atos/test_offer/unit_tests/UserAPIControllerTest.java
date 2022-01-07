@@ -52,14 +52,14 @@ class UserAPIControllerTest {
     @Test
     public void getAllUser() throws Exception {
         List<UserEntity> users = new ArrayList<UserEntity>();
-        int numberUser = 3;
+        int nbUsers = 3;
 
-        for(int i = 0; i < numberUser; i++){
+        for(int i = 0; i < nbUsers; i++){
             users.add(addNewUser("Test getAllUser method, user n°" + i));
         }
 
         when(userService.getAllUser()).thenReturn(users);
-        mockMvc.perform(get("/api/user")).andExpect(status().isOk()).andExpect(jsonPath("$.length()").value(numberUser));
+        mockMvc.perform(get("/api/user")).andExpect(status().isOk()).andExpect(jsonPath("$.length()").value(nbUsers));
     }
 
     @Test
