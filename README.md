@@ -1,9 +1,10 @@
 # Test Offer - Project
 
-** gras **
+**gras**
 
-*** italique ***
-** *** les deux ? *** ** 
+***italique***
+
+*****les deux ?***** 
 
 Le projet test_offer a été conçu dans le cadre d'une évalution de niveau par Mélanie Masson entre décembre 2021 et janvier 2022.
 
