@@ -25,7 +25,7 @@ public class UserServiceTest {
     @Autowired
     UserService userService;
 
-    private UserEntity addNewUser(String test) throws ParseException {
+    private UserEntity addNewUser() throws ParseException {
         UserEntity user = new UserEntity();
         user.setUsername("username");
         user.setCountry("FRANCE");
@@ -41,7 +41,7 @@ public class UserServiceTest {
         int nbUsers = 3;
 
         for (int i = 0; i < nbUsers; i++) {
-            user = addNewUser("Test getAllUsers method, user n°" + i);
+            user = addNewUser();
             userService.saveUser(user);
         }
         assertTrue(IterableUtil.sizeOf(userService.findAllUsers()) >= nbUsers);
@@ -49,7 +49,7 @@ public class UserServiceTest {
 
     @Test
     public void findUserById() throws ParseException, InvalidObjectException {
-        UserEntity user = addNewUser("Test findUserById method");
+        UserEntity user = addNewUser();
         userService.saveUser(user);
 
         assertNotNull(userService.findUserById(user.getId()));
@@ -57,7 +57,7 @@ public class UserServiceTest {
 
     @Test
     public void saveUser() throws ParseException, InvalidObjectException {
-        UserEntity user = addNewUser("Test saveUser method");
+        UserEntity user = addNewUser();
         user = userService.saveUser(user);
 
         assertNotEquals(user.getId(), 1);

@@ -9,7 +9,7 @@
 Le projet test_offer a été conçu dans le cadre de l'évalution de niveau de Mélanie Masson entre décembre 2021 et janvier 2022.
 
 
-## Introduction
+## ***Introduction***
 
 Le projet se compose d'une API Springboot. Elle expose plusieurs services :
 • celui qui permet d'enregistrer un utilisateur
@@ -24,7 +24,7 @@ Des tests unitaires et d'intégrations ont été effectués. Une collection Post
 Une AOP est utilisée pour enregistrer les entrées et les sorties de chaque appel ainsi que le temps de traitement.
 
 
-## Avant l'utilisation de l'API Springboot:
+## ***Avant l'utilisation de l'API Springboot:***
 
 ### Version Java
 
@@ -48,7 +48,7 @@ On peut également cloner le projet grace à l'outil Git. Pour cela on se place 
 Le projet peut ensuite être ouvert avec l'IDE de votre choix (IntelliJ, Eclipse, VSCode ...).
 
 
-## L'API
+## ***L'API SpringBoot***
 
 ### SpringBoot
 
@@ -59,7 +59,7 @@ La version de SpringBoot utilisée pour cette API est la 2.5.6.
 L'API utilise une base de données embarquée H2 nommée test_atos. L'execution du fichier data.sql permet sa mise à jour et son remplissage.
 
 
-## Utilisation de l'API
+## ***Utilisation de l'API***
 
 ### Démarrage de la base de donnée embarquée
 
@@ -91,14 +91,22 @@ Un utilisateur est défini par un nom d'utilisateur, une date de naissance et un
 - Le numéro de téléphone n'est pas obligatoire non plus. Comme l'utilisateur est un résident français, on considère que seuls les formats de numéro de téléphone français sont acceptés (exemple : 0123456789, 01.23.45.67.89, +33-1.23.45.67.89, +33(0) 123 456 789 ... ). Si une valeur est entrée mais est invalide un message d'erreur est renvoyé.
 
 
-## Test
+## ***Tests***
 
 Les tests unitaires et tests d'intégration sont dans le répertoire `src/test/java/com/atos/test_offer/`.
 
-### Tests d'intégration
-
-Les tests d'intégration sont divisés en trois.
+### Tests d'intégration :
 - Tests avec l'API et Postman
 L'API SpringBoot doit être executée. On envoie les requêtes Get et Post via Postman selon les informations données précedemment.
 Une collection de requêtes Postman est disponible dans le répertoire `src/test/java/com/atos/test_offer/` sous le nom de Postman_collection.
-La collection commence par les requêtes Get puis les requêtes Post.
+La collection commence par les requêtes Get puis les requêtes Post. Si la requête est valide la description correspond à "Success" et si elle est invalide elle correspond à "Error".
+- Tests avec UserServiceTest et UserRepository
+- Tests avec UserAPIControllerTest et UserService
+
+### Tests unitaires :
+- Tests UserEntityTest
+- Tests UserServiceTest
+- Tests UserAPIControllerTest
+
+Pour executer ces tests (hormis les tests Postman), il suffit de faire un clique droit sur le fichier ou le répertoire entier et sélectionner Run.
+Dans la console qui s'ouvre on voit pour chaque test les  

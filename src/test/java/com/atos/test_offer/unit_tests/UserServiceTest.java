@@ -32,13 +32,13 @@ public class UserServiceTest {
     @InjectMocks
     UserService userService;
 
-    private UserEntity addNewUser(String test) throws ParseException {
+    private UserEntity addNewUser() throws ParseException {
         UserEntity user = new UserEntity();
 
         user.setUsername("username");
         user.setCountry("FRANCE");
-        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-        user.setBirthday(new Date(dateFormat.parse("01-01-1901").getTime()));
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        user.setBirthday(new Date(dateFormat.parse("1901-01-01").getTime()));
 
         return user;
     }
@@ -51,7 +51,7 @@ public class UserServiceTest {
         //UserEntity user = new UserEntity();
 
         for (int i = 0; i < nbUsers; i++){
-            user = addNewUser(" Test findAllUsers method, user n°" + i + " ");
+            user = addNewUser();
             users.add(user);
         }
 
@@ -61,7 +61,7 @@ public class UserServiceTest {
 
     @Test
     public void findUserById() throws ParseException {
-        UserEntity user = addNewUser(" Test findUserById method ");
+        UserEntity user = addNewUser();
 
         when(userRepository.findById(any(int.class))).thenReturn(Optional.of(user));
         assertNotNull(userService.findUserById(user.getId()));
@@ -70,7 +70,7 @@ public class UserServiceTest {
 
     @Test
     public void saveUser() throws InvalidObjectException, ParseException {
-        UserEntity user = addNewUser(" Test saveUser method ");
+        UserEntity user = addNewUser();
 
         when(userRepository.save(any(UserEntity.class))).thenReturn(user);
         assertNotEquals(userService.saveUser(user).getId(), 1);
@@ -83,34 +83,32 @@ public class UserServiceTest {
 
     @Test
     public void addWithoutUsername() throws ParseException {
-        UserEntity user = addNewUser(" Test saveUser method (username null) ");
+        UserEntity user = addNewUser();
         user.setUsername(null);
 
         assertThrows(InvalidObjectException.class, () -> {
             userService.saveUser(user).getId();
-            //throw new InvalidObjectException(" No username entered. ");
+
         });
     }
 
     @Test
     public void addWithoutCountry() throws ParseException {
-        UserEntity user = addNewUser(" Test saveUser method (country null) ");
+        UserEntity user = addNewUser();
         user.setCountry(null);
 
         assertThrows(InvalidObjectException.class, () -> {
             userService.saveUser(user).getId();
-            //throw new InvalidObjectException(" No country entered. ");
         });
     }
 
     @Test
     public void addWithoutBirthdate() throws ParseException {
-        UserEntity user = addNewUser(" Test saveUser method (birthday null) ");
+        UserEntity user = addNewUser();
         user.setBirthday(null);
 
         assertThrows(InvalidObjectException.class, () -> {
             userService.saveUser(user).getId();
-            //throw new InvalidObjectException(" No birthday entered (format required : yyyy-mm-dd). ");
         });
     }
 
@@ -120,68 +118,54 @@ public class UserServiceTest {
 
     @Test
     public void addInvalidUsername() throws ParseException {
-        UserEntity user = addNewUser(" Test saveUser method (invalid username) ");
+        UserEntity user = addNewUser();
         user.setPhone("1");
-
-//        when(userRepository.save(any(UserEntity.class))).thenReturn(user);
 
         assertThrows(InvalidObjectException.class, () -> {
             userService.saveUser(user).getId();
-            //throw new InvalidObjectException(" The size of the username must be between 2 and 30 letters, without special characters. ");
         });
     }
 
     @Test
     public void addInvalidCountry() throws ParseException {
-        UserEntity user = addNewUser(" Test saveUser method (invalid country) ");
+        UserEntity user = addNewUser();
         user.setCountry("Fr");
-
-//        when(userRepository.save(any(UserEntity.class))).thenReturn(user);
 
         assertThrows(InvalidObjectException.class, () -> {
             userService.saveUser(user).getId();
-            //throw new InvalidObjectException(" Only French residents are allowed to create an account. ");
         });
     }
 
     @Test
     public void addInvalidBirthday() throws ParseException {
-        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-        UserEntity user = addNewUser(" Test saveUser method (invalid birthday) ");
-        user.setBirthday(new Date(dateFormat.parse("22-02-2222").getTime()));
+        UserEntity user = addNewUser();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        user.setBirthday(new Date(dateFormat.parse("2222-02-02").getTime()));
 
-//        when(userRepository.save(any(UserEntity.class))).thenReturn(user);
 
         assertThrows(InvalidObjectException.class, () -> {
             userService.saveUser(user).getId();
-            //throw new InvalidObjectException(" This birthday is invalid. ");
         });
     }
 
     @Test
     public void addInvalidAge() throws ParseException {
-        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-        UserEntity user = addNewUser(" Test saveUser method (invalid age) ");
-        user.setBirthday(new Date(dateFormat.parse("01-01-2010").getTime()));
-
-//        when(userRepository.save(any(UserEntity.class))).thenReturn(user);
+        UserEntity user = addNewUser();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        user.setBirthday(new Date(dateFormat.parse("2011-11-11").getTime()));
 
         assertThrows(InvalidObjectException.class, () -> {
             userService.saveUser(user).getId();
-            //throw new InvalidObjectException(" Only adult are allowed to create an account. ");
         });
     }
 
     @Test
     public void addInvalidPhone() throws ParseException {
-        UserEntity user = addNewUser(" Test saveUser method (invalid phone number) ");
+        UserEntity user = addNewUser();
         user.setPhone("1234");
-
-//        when(userRepository.save(any(UserEntity.class))).thenReturn(user);
 
         assertThrows(InvalidObjectException.class, () -> {
             userService.saveUser(user).getId();
-            //throw new InvalidObjectException(" This phone number is invalid (only French phone numbers are allowed). ");
         });
     }
 

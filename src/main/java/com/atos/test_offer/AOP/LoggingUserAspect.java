@@ -10,8 +10,6 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class LoggingUserAspect {
-    //long startTime = 0;
-    //long endTime = 0;
     long startTime = System.currentTimeMillis();
     long endTime = System.currentTimeMillis();
 

@@ -11,7 +11,6 @@ import org.springframework.web.server.ResponseStatusException;
 import java.io.InvalidObjectException;
 
 @RestController
-//@Controller
 @RequestMapping("/api/user")
 public class UserAPIController {
 
@@ -19,26 +18,23 @@ public class UserAPIController {
     UserService userService;
 
     //http://localhost:8080/api/user
-    //display user(s) and details
     @GetMapping(value="", produces = "application/json")
     public ResponseEntity<Iterable<UserEntity>> getAllUser(){
         return ResponseEntity.ok(userService.findAllUsers());
     }
 
-    //http://localhost:8080/api/user/id
-    //find user by id and display user's details
+    //http://localhost:8080/api/user/{id}
     @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<UserEntity> getUser(@PathVariable("id") int id){
         try{
             UserEntity user = userService.findUserById(id);
             return ResponseEntity.ok(user);
         } catch (Exception e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND , " User n°” + id + “ not found. "  );
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND , " User not found. "  );
         }
     }
 
     //http://localhost:8080/api/user
-    //saveUser user
     @PostMapping(value = "", consumes = "application/json")
     public ResponseEntity<UserEntity> addUser(@RequestBody UserEntity user) {
         try{
