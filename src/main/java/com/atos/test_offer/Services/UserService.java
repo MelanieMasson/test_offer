@@ -53,7 +53,7 @@ public class UserService {
         // check  username
         if (user.getUsername() == null) {
             System.out.println(user.getUsername());
-            throw new InvalidObjectException(" The user must have a username ");
+            throw new InvalidObjectException(" The user must have a username. ");
 
         } else if (user.getUsername().length() < 2) {
             throw new InvalidObjectException(" The size of the username must be between 2 and 30 characters. ");
@@ -61,7 +61,7 @@ public class UserService {
 
         // check country
         if (user.getCountry() == null) {
-            throw new InvalidObjectException(" The user must have a country ");
+            throw new InvalidObjectException(" The user must have a country. ");
         } else if (user.getCountry().length() < 2) {
             throw new InvalidObjectException(" This country is invalid. ");
         } else {
@@ -73,7 +73,7 @@ public class UserService {
         //check age
         Date currentDate = Date.valueOf(LocalDate.now());
         if (user.getBirthday() == null) {
-            throw new InvalidObjectException("The user must have a birthday (date format : yyyy-mm-dd)");
+            throw new InvalidObjectException(" The user must have a birthday (date format : yyyy-mm-dd). ");
         } else if (user.getBirthday().after(currentDate)) {
             throw new InvalidObjectException(" This birthday is invalid. ");
         } else {
