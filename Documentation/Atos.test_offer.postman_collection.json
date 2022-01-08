@@ -49,13 +49,38 @@
 			"response": []
 		},
 		{
+			"name": "Test getUser method (user 9 doesn't exist)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/user/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"9"
+					]
+				},
+				"description": "Test getUser method (user 9 doesn't exist)"
+			},
+			"response": []
+		},
+		{
 			"name": "Test addUser method",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"1998-12-19\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2002-12-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -85,7 +110,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"1998-12-19\",\r\n    \"country\": \"France\"\r\n}",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2002-12-12\",\r\n    \"country\": \"France\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -115,7 +140,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"birthday\": \"1998-12-19\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
+					"raw": "{\r\n    \"birthday\": \"2002-12-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -175,7 +200,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"1997-02-12\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2002-12-12\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -205,7 +230,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"1997-02-12\",\r\n    \"country\": \"France\",\r\n    \"gender\": \"Female\"\r\n}",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2002-12-12\",\r\n    \"country\": \"France\",\r\n    \"gender\": \"Female\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -235,7 +260,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"1997-02-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\"\r\n}",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2002-12-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -265,7 +290,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"M\",\r\n    \"birthday\": \"1997-02-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
+					"raw": "{\r\n    \"username\": \"M\",\r\n    \"birthday\": \"2002-12-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -295,7 +320,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2222-02-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2222-12-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -325,7 +350,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2002-02-12\",\r\n    \"country\": \"F\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2002-12-12\",\r\n    \"country\": \"F\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -355,7 +380,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2002-02-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01\",\r\n    \"gender\": \"Female\"\r\n}",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2002-12-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01\",\r\n    \"gender\": \"Female\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -385,7 +410,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2002-02-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"F\"\r\n}",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2002-12-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"F\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -415,7 +440,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2020-02-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2012-12-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -445,7 +470,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2002-02-12\",\r\n    \"country\": \"Italie\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2002-12-12\",\r\n    \"country\": \"Italie\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
