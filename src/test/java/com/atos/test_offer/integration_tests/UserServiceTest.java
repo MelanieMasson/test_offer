@@ -26,40 +26,39 @@ public class UserServiceTest {
 
     private UserEntity addNewUser(String test) throws ParseException {
         UserEntity user = new UserEntity();
-
         user.setUsername("username");
         user.setCountry("FRANCE");
-        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-        user.setBirthday(new Date(dateFormat.parse("01-01-1901").getTime()));
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-dd-mm");
+        user.setBirthday(new Date(dateFormat.parse("1901-01-01").getTime()));
 
         return user;
     }
 
     @Test
-    public void getAllUser() throws ParseException, InvalidObjectException {
+    public void findAllUser() throws ParseException, InvalidObjectException {
         UserEntity user;
         int nbUsers = 3;
 
         for (int i = 0; i < nbUsers; i++) {
-            user = addNewUser("Test getAllUser method, user n°" + i);
-            userService.addUser(user);
+            user = addNewUser("Test getAllUsers method, user n°" + i);
+            userService.saveUser(user);
         }
-        assertTrue(IterableUtil.sizeOf(userService.getAllUser()) >= nbUsers);
+        assertTrue(IterableUtil.sizeOf(userService.findAllUsers()) >= nbUsers);
     }
 
     @Test
-    public void getUserById() throws ParseException, InvalidObjectException {
-        UserEntity user = addNewUser("Test getUserById method");
-        userService.addUser(user);
+    public void findUserById() throws ParseException, InvalidObjectException {
+        UserEntity user = addNewUser("Test findUserById method");
+        userService.saveUser(user);
 
-        assertNotNull(userService.getUserById(user.getId()));
+        assertNotNull(userService.findUserById(user.getId()));
     }
 
     @Test
-    public void addUser() throws ParseException, InvalidObjectException {
-        UserEntity user = addNewUser("Test addUser method");
-        user = userService.addUser(user);
+    public void saveUser() throws ParseException, InvalidObjectException {
+        UserEntity user = addNewUser("Test saveUser method");
+        user = userService.saveUser(user);
 
-        assertNotEquals(user.getId(), 0);
+        assertNotEquals(user.getId(), 1);
     }
 }

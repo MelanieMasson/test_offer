@@ -46,7 +46,7 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "country")
+    @Column(name = "country", nullable = false)
     public String getCountry() {
         return country;
     }
@@ -56,7 +56,7 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "phone", nullable = true)
+    @Column(name = "phone")
     public String getPhone() {
         return phone;
     }
@@ -66,7 +66,7 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "gender", nullable = true)
+    @Column(name = "gender")
     @Enumerated(EnumType.STRING)
     public Gender getGender() {
         return gender;
@@ -74,6 +74,18 @@ public class UserEntity {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", birthday=" + birthday +
+                ", country='" + country + '\'' +
+                ", phone='" + phone + '\'' +
+                ", gender=" + gender +
+                '}';
     }
 
     @Override
@@ -87,17 +99,5 @@ public class UserEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, username, birthday, country, phone, gender);
-    }
-
-    @Override
-    public String toString() {
-        return "UserEntity{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", birthday=" + birthday +
-                ", country='" + country + '\'' +
-                ", phone='" + phone + '\'' +
-                ", gender=" + gender +
-                '}';
     }
 }

@@ -24,8 +24,8 @@ CREATE TABLE IF NOT EXISTS user (
 --
 
 INSERT INTO user (id, username, birthday, country, phone, gender) VALUES
-    (1, 'melanie.masson', '1998-12-19', 'France', '0123456789', 'Female'),
-    (2, 'pierre.dupont', '1983-07-27', 'France', '0123456789', 'Male'),
-    (3, 'jean.martin', '1973-10-05', 'France', '0123456789', 'Other');
+    (1, 'Melanie', '1998-12-19', 'France', '0123456789', 'Female'),
+    (2, 'Pierre', '1983-07-27', 'France', '0123456789', 'Male'),
+    (3, 'Jean', '1973-10-05', 'France', '0123456789', 'Other');
 
 //COMMIT;

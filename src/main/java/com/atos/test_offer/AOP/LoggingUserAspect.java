@@ -17,13 +17,11 @@ public class LoggingUserAspect {
 
     private static final Logger logger = LogManager.getLogger(LoggingUserAspect.class);
 
-    @Around("execution(* com.atos.test_offer.APIController.UserAPIController.add*(..) )")
-    /*public Object callOnUserPOST( ProceedingJoinPoint proceedingJoinPoint ) throws Throwable {
-        return logDataFromUserAPI(proceedingJoinPoint);
-    }*/
+    @Around("execution(* com.atos.test_offer.APIController.UserAPIController.addUser(..) )")
+
     public Object callAddUser(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 
-        logger.info("---------- Before addUser execution ----------");
+        logger.info("---------- Before saveUser execution ----------");
 
         startTime = System.currentTimeMillis();
         Object value = null;
@@ -31,18 +29,18 @@ public class LoggingUserAspect {
             value = proceedingJoinPoint.proceed(); // call edit
         } catch (Throwable e) {
 
-            logger.info("---------- Problem on addUser method ----------");
+            logger.info("---------- Problem on saveUser method ----------");
             logger.info(e.getMessage());
             throw e;
 
         }
         endTime = System.currentTimeMillis();
 
-        logger.info("---------- After addUser execution (duration : " + (endTime - startTime) + ") ----------");
+        logger.info("---------- After saveUser execution (duration : " + (endTime - startTime) + ") ----------");
         return value;
     }
 
-    @Around("execution(* com.atos.test_offer.APIController.UserAPIController.get*(..) )")
+    @Around("execution(* com.atos.test_offer.APIController.UserAPIController.getUser(..) )")
     public Object callOnUserGET( ProceedingJoinPoint proceedingJoinPoint ) throws Throwable {
         logger.info("---------- Before findUser execution ----------");
 

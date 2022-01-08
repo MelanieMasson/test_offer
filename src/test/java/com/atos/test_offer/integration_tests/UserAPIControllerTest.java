@@ -2,26 +2,41 @@ package com.atos.test_offer.integration_tests;
 
 import com.atos.test_offer.Entities.UserEntity;
 import com.atos.test_offer.Repositories.UserRepository;
+import com.atos.test_offer.Services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.assertj.core.util.IterableUtil;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import static net.bytebuddy.matcher.ElementMatchers.is;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.Assert.assertTrue;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 public class UserAPIControllerTest {
@@ -35,34 +50,51 @@ public class UserAPIControllerTest {
     @Autowired
     private UserRepository userRepository;
 
-    private UserEntity addNewUser(String test) throws ParseException {
-        UserEntity user = new UserEntity();
+    public UserService userService;
 
-        user.setUsername("username");
+    private UserEntity addNewUser(String name) throws ParseException {
+        UserEntity user = new UserEntity();
+        user.setUsername(name);
         user.setCountry("FRANCE");
-        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-        user.setBirthday(new Date(dateFormat.parse("01-01-1901").getTime()));
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-dd-mm");
+        user.setBirthday(new Date(dateFormat.parse("1901-01-01").getTime()));
 
         return user;
     }
 
     @Test
-    public void getAllUser() throws Exception {
+    public void getAllUsers() throws Exception {
         int nbUsers = 3;
 
         for (int i = 0; i < nbUsers; i++)
-            userRepository.save(addNewUser(" Test getAllUser method, user n°" + i + " "));
+            userRepository.save(addNewUser(" Test getAllUsers method, user n°" + i + " "));
 
-        mockMvc.perform(get("/api/user")).andExpect(status().isOk()).andExpect(jsonPath("$.length()", Matchers.greaterThanOrEqualTo(nbUsers)));
+
+        assertTrue(IterableUtil.sizeOf(userService.findAllUsers()) >= nbUsers);
     }
 
+    /*
     @Test
     public void getUserById() throws Exception {
         UserEntity user = addNewUser(" Test getUserById method ");
+        userRepository.save(user);
+        mockMvc.perform(get("/api/user/" + user.getId())).andExpect(status().isOk())
+        .andExpect(jsonPath("$.username").value(user.getUsername()));
+    }*/
+
+    @Test
+    public void getUserById() throws Exception {
+        UserEntity user = new UserEntity();
+        user.setUsername("username");
+        user.setCountry("FRANCE");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-dd-mm");
+        user.setBirthday(new Date(dateFormat.parse("1901-01-01").getTime()));
 
         userRepository.save(user);
-        mockMvc.perform(get("/api/user/" + user.getId())).andExpect(status().isOk()).andExpect(jsonPath("$.username").value(user.getUsername()));
+        mockMvc.perform(get("/api/user/" + user.getId())).andExpect(status().isOk())
+                .andExpect(jsonPath("$.username").value(user.getUsername()));
     }
+
 
     @Test
     public void addUser() throws Exception {
@@ -95,7 +127,7 @@ public class UserAPIControllerTest {
 
     @Test
     public void addWithoutCountry() throws Exception {
-        UserEntity user = addNewUser(" Test addUser method (country null) ");
+        UserEntity user = addNewUser(" Test saveUser method (country null) ");
         user.setCountry(null);
 
         mockMvc.perform(post("/api/user").content(objectMapper.writeValueAsString(user)).contentType(MediaType.APPLICATION_JSON)).andExpect(status().is4xxClientError()).andExpect(status().reason(" No country entered. "));
@@ -129,18 +161,18 @@ public class UserAPIControllerTest {
 
     @Test
     public void addInvalidBirthday() throws Exception {
-        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd-");
         UserEntity user = addNewUser(" Test addUser method (invalid birthday) ");
-        user.setBirthday(new Date(dateFormat.parse("02-02-2222").getTime()));
+        user.setBirthday(new Date(dateFormat.parse("2222-02-02").getTime()));
 
         mockMvc.perform(post("/api/user").content(objectMapper.writeValueAsString(user)).contentType(MediaType.APPLICATION_JSON)).andExpect(status().is4xxClientError()).andExpect(status().reason(" This birthday is invalid. "));
     }
 
     @Test
     public void addInvalidAge() throws Exception {
-        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd-");
         UserEntity user = addNewUser(" Test addUser method (invalid age) ");
-        user.setBirthday(new Date(dateFormat.parse("01-01-2010").getTime()));
+        user.setBirthday(new Date(dateFormat.parse("2010-01-01").getTime()));
 
         mockMvc.perform(post("/api/user").content(objectMapper.writeValueAsString(user)).contentType(MediaType.APPLICATION_JSON)).andExpect(status().is4xxClientError()).andExpect(status().reason(" Only adult are allowed to create an account. "));
     }

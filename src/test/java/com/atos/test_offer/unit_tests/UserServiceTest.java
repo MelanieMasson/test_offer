@@ -21,6 +21,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {
@@ -43,36 +44,36 @@ public class UserServiceTest {
     }
 
     @Test
-    public void getAllUser() throws ParseException {
+    public void findAllUsers() throws ParseException {
         int nbUsers = 3;
         List<UserEntity> users = new ArrayList<UserEntity>();
         UserEntity user;
         //UserEntity user = new UserEntity();
 
         for (int i = 0; i < nbUsers; i++){
-            user = addNewUser(" Test getAllUser method, user n°" + i + " ");
+            user = addNewUser(" Test findAllUsers method, user n°" + i + " ");
             users.add(user);
         }
 
         when(userRepository.findAll()).thenReturn(users);
-        assertEquals(IterableUtil.sizeOf(userService.getAllUser()), nbUsers);
+        assertEquals(IterableUtil.sizeOf(userService.findAllUsers()), nbUsers);
     }
 
     @Test
-    public void getUserById() throws ParseException {
-        UserEntity user = addNewUser(" Test getUserById method ");
+    public void findUserById() throws ParseException {
+        UserEntity user = addNewUser(" Test findUserById method ");
 
-        when(userRepository.findById(any(int.class))).thenReturn(java.util.Optional.of(user));
-        assertNotNull(userService.getUserById(user.getId()));
+        when(userRepository.findById(any(int.class))).thenReturn(Optional.of(user));
+        assertNotNull(userService.findUserById(user.getId()));
     }
 
 
     @Test
-    public void addUser() throws InvalidObjectException, ParseException {
-        UserEntity user = addNewUser(" Test addUser method ");
+    public void saveUser() throws InvalidObjectException, ParseException {
+        UserEntity user = addNewUser(" Test saveUser method ");
 
         when(userRepository.save(any(UserEntity.class))).thenReturn(user);
-        assertNotEquals(userService.addUser(user).getId(), 0);
+        assertNotEquals(userService.saveUser(user).getId(), 1);
     }
 
     //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -82,33 +83,33 @@ public class UserServiceTest {
 
     @Test
     public void addWithoutUsername() throws ParseException {
-        UserEntity user = addNewUser(" Test addUser method (username null) ");
+        UserEntity user = addNewUser(" Test saveUser method (username null) ");
         user.setUsername(null);
 
         assertThrows(InvalidObjectException.class, () -> {
-            userService.addUser(user).getId();
+            userService.saveUser(user).getId();
             //throw new InvalidObjectException(" No username entered. ");
         });
     }
 
     @Test
     public void addWithoutCountry() throws ParseException {
-        UserEntity user = addNewUser(" Test addUser method (country null) ");
+        UserEntity user = addNewUser(" Test saveUser method (country null) ");
         user.setCountry(null);
 
         assertThrows(InvalidObjectException.class, () -> {
-            userService.addUser(user).getId();
+            userService.saveUser(user).getId();
             //throw new InvalidObjectException(" No country entered. ");
         });
     }
 
     @Test
     public void addWithoutBirthdate() throws ParseException {
-        UserEntity user = addNewUser(" Test addUser method (birthday null) ");
+        UserEntity user = addNewUser(" Test saveUser method (birthday null) ");
         user.setBirthday(null);
 
         assertThrows(InvalidObjectException.class, () -> {
-            userService.addUser(user).getId();
+            userService.saveUser(user).getId();
             //throw new InvalidObjectException(" No birthday entered (format required : yyyy-mm-dd). ");
         });
     }
@@ -116,28 +117,29 @@ public class UserServiceTest {
 
     //Invalid attribute
 
+
     @Test
     public void addInvalidUsername() throws ParseException {
-        UserEntity user = addNewUser(" Test addUser method (invalid username) ");
+        UserEntity user = addNewUser(" Test saveUser method (invalid username) ");
         user.setPhone("1");
 
 //        when(userRepository.save(any(UserEntity.class))).thenReturn(user);
 
         assertThrows(InvalidObjectException.class, () -> {
-            userService.addUser(user).getId();
+            userService.saveUser(user).getId();
             //throw new InvalidObjectException(" The size of the username must be between 2 and 30 letters, without special characters. ");
         });
     }
 
     @Test
     public void addInvalidCountry() throws ParseException {
-        UserEntity user = addNewUser(" Test addUser method (invalid country) ");
+        UserEntity user = addNewUser(" Test saveUser method (invalid country) ");
         user.setCountry("Fr");
 
 //        when(userRepository.save(any(UserEntity.class))).thenReturn(user);
 
         assertThrows(InvalidObjectException.class, () -> {
-            userService.addUser(user).getId();
+            userService.saveUser(user).getId();
             //throw new InvalidObjectException(" Only French residents are allowed to create an account. ");
         });
     }
@@ -145,13 +147,13 @@ public class UserServiceTest {
     @Test
     public void addInvalidBirthday() throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-        UserEntity user = addNewUser(" Test addUser method (invalid birthday) ");
+        UserEntity user = addNewUser(" Test saveUser method (invalid birthday) ");
         user.setBirthday(new Date(dateFormat.parse("22-02-2222").getTime()));
 
 //        when(userRepository.save(any(UserEntity.class))).thenReturn(user);
 
         assertThrows(InvalidObjectException.class, () -> {
-            userService.addUser(user).getId();
+            userService.saveUser(user).getId();
             //throw new InvalidObjectException(" This birthday is invalid. ");
         });
     }
@@ -159,26 +161,26 @@ public class UserServiceTest {
     @Test
     public void addInvalidAge() throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-        UserEntity user = addNewUser(" Test addUser method (invalid age) ");
+        UserEntity user = addNewUser(" Test saveUser method (invalid age) ");
         user.setBirthday(new Date(dateFormat.parse("01-01-2010").getTime()));
 
 //        when(userRepository.save(any(UserEntity.class))).thenReturn(user);
 
         assertThrows(InvalidObjectException.class, () -> {
-            userService.addUser(user).getId();
+            userService.saveUser(user).getId();
             //throw new InvalidObjectException(" Only adult are allowed to create an account. ");
         });
     }
 
     @Test
     public void addInvalidPhone() throws ParseException {
-        UserEntity user = addNewUser(" Test addUser method (invalid phone number) ");
+        UserEntity user = addNewUser(" Test saveUser method (invalid phone number) ");
         user.setPhone("1234");
 
 //        when(userRepository.save(any(UserEntity.class))).thenReturn(user);
 
         assertThrows(InvalidObjectException.class, () -> {
-            userService.addUser(user).getId();
+            userService.saveUser(user).getId();
             //throw new InvalidObjectException(" This phone number is invalid (only French phone numbers are allowed). ");
         });
     }

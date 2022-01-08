@@ -26,16 +26,18 @@ public class UserService {
 
     //find user(s) and display details
     //find all
-    public Iterable<UserEntity> getAllUser() {
+    public Iterable<UserEntity> findAllUsers() {
         return userRepository.findAll();
     }
 
     //find user by id
-    public UserEntity getUserById(int id) { return userRepository.findById(id).get(); }
+    public UserEntity findUserById(int id) {
+        return userRepository.findById(id).get();
+    }
 
     //-----------------------------------------------------------------------------------------
 
-    public UserEntity addUser(UserEntity user) throws InvalidObjectException {
+    public UserEntity saveUser(UserEntity user) throws InvalidObjectException {
         checkUser(user);
         userRepository.save(user);
 
@@ -49,15 +51,23 @@ public class UserService {
     private void checkUser(UserEntity user) throws InvalidObjectException {
 
         // check  username
-        Pattern VALID_NAME = Pattern.compile("[A-Za-z]{2,30}");
-        Matcher matcher = VALID_NAME.matcher(user.getUsername());
-        if (user.getUsername() == null || !matcher.find() || user.getUsername().length() < 2) {
-            throw new InvalidObjectException(" The size of the username must be between 2 and 30 letters, without special characters. ");
+        if (user.getUsername() == null) {
+            System.out.println(user.getUsername());
+            throw new InvalidObjectException(" The user must have a username ");
+
+        } else if (user.getUsername().length() < 2) {
+            throw new InvalidObjectException(" The size of the username must be between 2 and 30 characters. ");
         }
 
         // check country
-        if (user.getCountry() == null || !(user.getCountry().toUpperCase().equals("FRANCE"))) {
-            throw new InvalidObjectException(" Only French residents are allowed to create an account. ");
+        if (user.getCountry() == null) {
+            throw new InvalidObjectException(" The user must have a country ");
+        } else if (user.getCountry().length() < 2) {
+            throw new InvalidObjectException(" This country is invalid. ");
+        } else {
+            if (!(user.getCountry().toUpperCase().equals("FRANCE"))) {
+                throw new InvalidObjectException(" Only French residents are allowed to create an account. ");
+            }
         }
 
         //check age
@@ -73,9 +83,9 @@ public class UserService {
         }
 
         //check phone number
-        Pattern VALID_PHONE=Pattern.compile("^(?:(?:\\+|00)33[\\s.-]{0,3}(?:\\(0\\)[\\s.-]{0,3})?|0)[1-9](?:(?:[\\s.-]?\\d{2}){4}|\\d{2}(?:[\\s.-]?\\d{3}){2})$");
-        matcher = VALID_PHONE.matcher(user.getPhone());
         if (user.getPhone()!= null) {
+            Pattern VALID_PHONE=Pattern.compile("^(?:(?:\\+|00)33[\\s.-]{0,3}(?:\\(0\\)[\\s.-]{0,3})?|0)[1-9](?:(?:[\\s.-]?\\d{2}){4}|\\d{2}(?:[\\s.-]?\\d{3}){2})$");
+            Matcher matcher = VALID_PHONE.matcher(user.getPhone());
             if (!matcher.find() || user.getPhone().length() < 10) {
                 throw new InvalidObjectException(" This phone number is invalid (only French phone numbers are allowed). ");
             }

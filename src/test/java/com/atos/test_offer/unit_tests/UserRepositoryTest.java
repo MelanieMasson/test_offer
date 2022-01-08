@@ -36,28 +36,28 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void getAllUser() throws ParseException {
+    public void findAllUsers() throws ParseException {
         int nbUsers = 3;
         //int i = 0;
         UserEntity user;
 
         for (int i = 0; i < nbUsers; i++) {
-            user = addNewUser(" Test getAllUser method, user n°" + i + " ");
+            user = addNewUser(" Test findAllUsers method, user n°" + i + " ");
             userRepository.save(user);
         }
         assertTrue(IterableUtil.sizeOf(userRepository.findAll()) >= nbUsers);
     }
 
     @Test
-    public void getUserById() throws ParseException, InvalidObjectException {
-        UserEntity user = addNewUser(" Test getUserById method ");
+    public void findUserById() throws ParseException, InvalidObjectException {
+        UserEntity user = addNewUser(" Test findUserById method ");
         userRepository.save(user);
         assertNotNull(userRepository.findById(user.getId()));
     }
 
     @Test
-    public void addUser() throws ParseException {
-        UserEntity user = addNewUser(" Test addUser method ");
+    public void saveUser() throws ParseException {
+        UserEntity user = addNewUser(" Test saveUser method ");
         user = userRepository.save(user);
         assertNotEquals(user.getId(), 0);
     }

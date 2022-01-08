@@ -50,31 +50,31 @@ class UserAPIControllerTest {
     }
 
     @Test
-    public void getAllUser() throws Exception {
+    public void getAllUsers() throws Exception {
         List<UserEntity> users = new ArrayList<UserEntity>();
         int nbUsers = 3;
 
         for(int i = 0; i < nbUsers; i++){
-            users.add(addNewUser("Test getAllUser method, user n°" + i));
+            users.add(addNewUser("Test getAllUsers method, user n°" + i));
         }
 
-        when(userService.getAllUser()).thenReturn(users);
+        when(userService.findAllUsers()).thenReturn(users);
         mockMvc.perform(get("/api/user")).andExpect(status().isOk()).andExpect(jsonPath("$.length()").value(nbUsers));
     }
 
     @Test
     public void getUserById() throws Exception {
-        UserEntity user = addNewUser("Test getUserById method");
+        UserEntity user = addNewUser("Test findUserById method");
 
-        when(userService.getUserById(any(int.class))).thenReturn(user);
+        when(userService.findUserById(any(int.class))).thenReturn(user);
         mockMvc.perform(get("/api/user/1")).andExpect(status().isOk()).andExpect(jsonPath("$.username").value(user.getUsername()));
     }
 
     @Test
     public void addUser() throws Exception {
-        UserEntity user = addNewUser("Test addUser method");
+        UserEntity user = addNewUser("Test saveUser method");
 
-        when(userService.addUser(any(UserEntity.class))).thenReturn(user);
+        when(userService.saveUser(any(UserEntity.class))).thenReturn(user);
         mockMvc.perform(post("/api/user").content(objectMapper.writeValueAsString(user)).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$.username").value(user.getUsername()));
 
     }

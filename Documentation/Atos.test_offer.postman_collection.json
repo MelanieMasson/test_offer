@@ -1,0 +1,472 @@
+{
+	"info": {
+		"_postman_id": "42344ffe-7028-44fa-93eb-129ff4650558",
+		"name": "Atos.test_offer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Test getAllUser method",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": "Test getAllUser method"
+			},
+			"response": []
+		},
+		{
+			"name": "Test getUser method (user 1)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/user/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"1"
+					]
+				},
+				"description": "Test getUser method (user 1)"
+			},
+			"response": []
+		},
+		{
+			"name": "Test addUser method",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"1998-12-19\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": "Test addUser method"
+			},
+			"response": []
+		},
+		{
+			"name": "Test addUser method (without gender and phone number)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"1998-12-19\",\r\n    \"country\": \"France\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": "Test addUser method (without gender and phone number)"
+			},
+			"response": []
+		},
+		{
+			"name": "Test addUser method (without username)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"birthday\": \"1998-12-19\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": "Test addUser method (without username)"
+			},
+			"response": []
+		},
+		{
+			"name": "Test addUser method (without birthday)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": "Test addUser method (without birthday)"
+			},
+			"response": []
+		},
+		{
+			"name": "Test addUser method (without country)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"1997-02-12\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": "Test addUser method (without country)"
+			},
+			"response": []
+		},
+		{
+			"name": "Test addUser method (without phone number)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"1997-02-12\",\r\n    \"country\": \"France\",\r\n    \"gender\": \"Female\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": "Test addUser method (without phone number)"
+			},
+			"response": []
+		},
+		{
+			"name": "Test addUser method (without gender)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"1997-02-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": "Test addUser method (without gender)"
+			},
+			"response": []
+		},
+		{
+			"name": "Test addUser method (username too short)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"M\",\r\n    \"birthday\": \"1997-02-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": "Test addUser method (username too short)"
+			},
+			"response": []
+		},
+		{
+			"name": "Test addUser method (birthdate after today's date)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2222-02-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": "Test addUser method (birthdate after today's date)"
+			},
+			"response": []
+		},
+		{
+			"name": "Test addUser method (country name too short)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2002-02-12\",\r\n    \"country\": \"F\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": "Test addUser method (country name too short)"
+			},
+			"response": []
+		},
+		{
+			"name": "Test addUser method (phone number too short)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2002-02-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01\",\r\n    \"gender\": \"Female\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": "Test addUser method (phone number too short)"
+			},
+			"response": []
+		},
+		{
+			"name": "Test addUser method (invalid gender)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2002-02-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"F\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": "Test addUser method (invalid gender)"
+			},
+			"response": []
+		},
+		{
+			"name": "Test addUser method (user age under 18)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2020-02-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": "Test addUser method (user age under 18)"
+			},
+			"response": []
+		},
+		{
+			"name": "Test addUser method (other country than France)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2002-02-12\",\r\n    \"country\": \"Italie\",\r\n    \"phone\": \"01-23-45-67-89\",\r\n    \"gender\": \"Female\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": "Test addUser method (other country than France)"
+			},
+			"response": []
+		}
+	]
+}
