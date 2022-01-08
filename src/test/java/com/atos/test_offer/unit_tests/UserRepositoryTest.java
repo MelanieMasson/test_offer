@@ -29,8 +29,8 @@ public class UserRepositoryTest {
 
         user.setUsername("username");
         user.setCountry("FRANCE");
-        DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-        user.setBirthday(new Date(df.parse("01-01-1901").getTime()));
+        DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+        user.setBirthday(new Date(df.parse("1901-01-01").getTime()));
 
         return user;
     }
@@ -42,7 +42,7 @@ public class UserRepositoryTest {
         UserEntity user;
 
         for (int i = 0; i < nbUsers; i++) {
-            user = addNewUser(" Test findAllUsers method, user n°" + i + " ");
+            user = addNewUser(" Test findAllUsers method ");
             userRepository.save(user);
         }
         assertTrue(IterableUtil.sizeOf(userRepository.findAll()) >= nbUsers);

@@ -43,8 +43,8 @@ class UserAPIControllerTest {
 
         user.setUsername("username");
         user.setCountry("FRANCE");
-        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-        user.setBirthday(new Date(dateFormat.parse("01-01-1901").getTime()));
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        user.setBirthday(new Date(dateFormat.parse("1901-01-01").getTime()));
 
         return user;
     }
@@ -55,7 +55,7 @@ class UserAPIControllerTest {
         int nbUsers = 3;
 
         for(int i = 0; i < nbUsers; i++){
-            users.add(addNewUser("Test getAllUsers method, user n°" + i));
+            users.add(addNewUser("Test getAllUsers method"));
         }
 
         when(userService.findAllUsers()).thenReturn(users);

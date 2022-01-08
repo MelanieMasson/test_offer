@@ -25,12 +25,10 @@ public class UserService {
     //-----------------------------------------------------------------------------------------
 
     //find user(s) and display details
-    //find all
     public Iterable<UserEntity> findAllUsers() {
         return userRepository.findAll();
     }
 
-    //find user by id
     public UserEntity findUserById(int id) {
         return userRepository.findById(id).get();
     }

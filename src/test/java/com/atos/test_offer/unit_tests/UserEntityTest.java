@@ -52,8 +52,8 @@ class UserEntityTest {
 
     @Test
     void setBirthday() throws ParseException {
-        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-        Date testdate = new Date(dateFormat.parse("01-01-1901").getTime());
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        Date testdate = new Date(dateFormat.parse("1901-01-01").getTime());
         this.user.setBirthday(testdate);
         assertEquals(user.getBirthday(), testdate);
     }
