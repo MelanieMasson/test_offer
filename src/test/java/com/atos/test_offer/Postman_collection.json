@@ -22,7 +22,7 @@
 						"user"
 					]
 				},
-				"description": "Test getAllUser method"
+				"description": "Success"
 			},
 			"response": []
 		},
@@ -44,7 +44,7 @@
 						"1"
 					]
 				},
-				"description": "Test getUser method (user 1)"
+				"description": "Success"
 			},
 			"response": []
 		},
@@ -69,7 +69,7 @@
 						"9"
 					]
 				},
-				"description": "Test getUser method (user 9 doesn't exist)"
+				"description": "Error"
 			},
 			"response": []
 		},
@@ -99,7 +99,7 @@
 						"user"
 					]
 				},
-				"description": "Test addUser method"
+				"description": "Success"
 			},
 			"response": []
 		},
@@ -129,7 +129,7 @@
 						"user"
 					]
 				},
-				"description": "Test addUser method (without gender and phone number)"
+				"description": "Success"
 			},
 			"response": []
 		},
@@ -159,7 +159,7 @@
 						"user"
 					]
 				},
-				"description": "Test addUser method (without username)"
+				"description": "Error"
 			},
 			"response": []
 		},
@@ -189,7 +189,7 @@
 						"user"
 					]
 				},
-				"description": "Test addUser method (without birthday)"
+				"description": "Error"
 			},
 			"response": []
 		},
@@ -219,7 +219,7 @@
 						"user"
 					]
 				},
-				"description": "Test addUser method (without country)"
+				"description": "Error"
 			},
 			"response": []
 		},
@@ -249,7 +249,7 @@
 						"user"
 					]
 				},
-				"description": "Test addUser method (without phone number)"
+				"description": "Success"
 			},
 			"response": []
 		},
@@ -279,7 +279,7 @@
 						"user"
 					]
 				},
-				"description": "Test addUser method (without gender)"
+				"description": "Success"
 			},
 			"response": []
 		},
@@ -309,7 +309,7 @@
 						"user"
 					]
 				},
-				"description": "Test addUser method (username too short)"
+				"description": "Error"
 			},
 			"response": []
 		},
@@ -339,7 +339,7 @@
 						"user"
 					]
 				},
-				"description": "Test addUser method (birthdate after today's date)"
+				"description": "Error"
 			},
 			"response": []
 		},
@@ -369,7 +369,7 @@
 						"user"
 					]
 				},
-				"description": "Test addUser method (country name too short)"
+				"description": "Error"
 			},
 			"response": []
 		},
@@ -399,7 +399,37 @@
 						"user"
 					]
 				},
-				"description": "Test addUser method (phone number too short)"
+				"description": "Error"
+			},
+			"response": []
+		},
+		{
+			"name": "Test addUser method (invalid phone number format)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Marie\",\r\n    \"birthday\": \"2002-12-12\",\r\n    \"country\": \"France\",\r\n    \"phone\": \"wrgrwrgwxth\",\r\n    \"gender\": \"Female\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": "Error"
 			},
 			"response": []
 		},
@@ -429,7 +459,7 @@
 						"user"
 					]
 				},
-				"description": "Test addUser method (invalid gender)"
+				"description": "Error"
 			},
 			"response": []
 		},
@@ -459,7 +489,7 @@
 						"user"
 					]
 				},
-				"description": "Test addUser method (user age under 18)"
+				"description": "Error"
 			},
 			"response": []
 		},
@@ -489,7 +519,7 @@
 						"user"
 					]
 				},
-				"description": "Test addUser method (other country than France)"
+				"description": "Error"
 			},
 			"response": []
 		}
